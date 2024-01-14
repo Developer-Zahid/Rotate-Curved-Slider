@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Kanit", sans-serif;
+}
+
+.section {
+  padding-block: 4rem;
+  overflow-x: clip;
+}
+.section__header {
+  padding-inline: 1.6rem;
+  text-align: center;
+  max-width: 80rem;
+  margin-inline: auto;
+  margin-block-end: 4rem;
+}
+.section__header__title {
+  font-size: clamp(3rem, 5vw, 8rem);
+  font-weight: 500;
+  line-height: 1.1;
+  margin-block-end: 2rem;
+}
+.section__header__text {
+  font-size: 1.6rem;
+}
+@media (min-width: 768px) {
+  .section__header__text {
+    max-width: 60%;
+    margin-inline: auto;
+  }
+}
+
+.card {
+  border-radius: 1rem;
+  padding: 2rem;
+  background-color: #f4f4f4;
+  background-image: linear-gradient(100deg, var(--_color-1, #ffeceb), var(--_color-2, #f5edff));
+}
+.card__title {
+  font-size: 1.8rem;
+  line-height: 1.8;
+}
+.card__footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-block-start: 3rem;
+}
+.card__footer__avatar {
+  border-radius: 50rem;
+}
+.card__footer__title {
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.card__footer__text {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.slider {
+  --_deg: calc(180deg / var(--_total));
+  --_offset: 300px;
+}
+@media (min-width: 668px) {
+  .slider {
+    --_offset: 250px;
+  }
+}
+@media (min-width: 992px) {
+  .slider {
+    --_offset: 300px;
+  }
+}
+@media (min-width: 1400px) {
+  .slider {
+    --_offset: 400px;
+  }
+}
+.slider .slick-list {
+  overflow: unset;
+  height: calc(var(--_offset) + var(--_offset) / 1.5);
+  background-color: #ffffff;
+}
+.slider .slick-list,
+.slider .slick-track {
+  transform: unset !important;
+}
+.slider .slick-track {
+  display: flex;
+  justify-content: center;
+  width: 100% !important;
+  transition: unset !important;
+}
+.slider .slick-track::after,
+.slider .slick-track::before {
+  display: none;
+}
+.slider .slick-slide {
+  float: unset;
+  height: auto;
+  position: absolute;
+  transition: all 0.3s linear !important;
+  transform: rotate(calc((var(--_deg)) * var(--_index) * var(--_direction))) translateX(calc(cos(var(--_deg)) * (var(--_index)) * (var(--_offset) + var(--_offset) / 10) * var(--_direction))) translateY(calc(sin(var(--_deg)) * (var(--_index)) * 100px));
+}
+.slider .slick-slide:not(.slick-active) {
+  opacity: 0;
+  visibility: hidden;
+}/*# sourceMappingURL=style.css.map */

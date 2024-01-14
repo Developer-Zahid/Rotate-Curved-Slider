@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap');
+
+$font-primary: 'Kanit', sans-serif;
+
+*,
+*::before,
+*::after
+{
+    box-sizing: border-box;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html{
+    font-size: 10px;
+}
+
+body{
+    font-size: 1.6rem;
+    font-family: $font-primary;
+}
+
+.section{
+    padding-block: 4rem;
+    overflow-x: clip;
+    
+    &__header{
+        padding-inline: 1.6rem;
+        text-align: center;
+        max-width: 80rem;
+        margin-inline: auto;
+        margin-block-end: 4rem;
+
+        &__title{
+            font-size: clamp(3rem, 5vw, 8rem);
+            font-weight: 500;
+            line-height: 1.1;
+            margin-block-end: 2rem;
+        }
+        
+        &__text{
+            font-size: 1.6rem;
+
+            @media (min-width: 768px) {
+                max-width: 60%;
+                margin-inline: auto;
+            }
+        }
+    }
+}
+
+.card{
+    border-radius: 1rem;
+    padding: 2rem;
+    background-color: #f4f4f4;
+    background-image: linear-gradient(100deg, var(--_color-1,#ffeceb), var(--_color-2,#f5edff));
+
+    &__title{
+        font-size: 1.8rem;
+        line-height: 1.8;
+    }
+
+    &__footer{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-block-start: 3rem;
+
+        &__avatar{
+            border-radius: 50rem;
+        }
+
+        &__title{
+            font-size: 2rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        &__text{
+            font-size: 1.4rem;
+            font-weight: 400;
+        }
+    }
+}
+
+.slider{
+    --_deg: calc(180deg / var(--_total));
+    --_offset: 300px;
+    
+    @media (min-width: 668px) {
+        --_offset: 250px;
+    }
+    @media (min-width: 992px) {
+        --_offset: 300px;
+    }
+    @media (min-width: 1400px) {
+        --_offset: 400px;
+    }
+
+    .slick-list{
+        overflow: unset;
+        height: calc(var(--_offset) + (var(--_offset) / 1.5));
+        background-color: #ffffff;
+    }
+
+    .slick-list,
+    .slick-track
+    {
+        transform: unset !important;
+    }
+
+    .slick-track{
+        display: flex;
+        justify-content: center;
+        width: 100% !important;
+        transition: unset !important;
+    }
+
+    .slick-track::after,
+    .slick-track::before
+    {
+        display: none;
+    }
+
+    .slick-slide{
+        float: unset;
+        height: auto;
+        position: absolute;
+        transition: all 0.3s linear !important;
+        transform:
+            rotate(calc((var(--_deg) ) * var(--_index) * var(--_direction)))
+            translateX((calc(cos(var(--_deg)) * (var(--_index)) * ((var(--_offset) + (var(--_offset) / 10) ) * var(--_direction)))))
+            translateY((calc(sin(var(--_deg)) * (var(--_index)) * (100px))));
+
+
+        &:not(.slick-active)
+        {
+            opacity: 0;
+            visibility: hidden;
+            // z-index: -1;
+        }
+    }
+}
