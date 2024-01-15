@@ -61,10 +61,12 @@ $(document).ready(function () {
         pauseOnFocus: false,
         pauseOnHover: false,
         centerPadding: '0px',
+        autoplay: true,
+        autoplaySpeed: 2000,
         speed: 100,
         responsive: [
             {
-                breakpoint: 1400,
+                breakpoint: 1200,
                 settings: {
                   slidesToShow: 4,
                 }
@@ -72,7 +74,7 @@ $(document).ready(function () {
             {
                 breakpoint: 992,
                 settings: {
-                  slidesToShow: 2,
+                  slidesToShow: 3,
                 }
             },
             {

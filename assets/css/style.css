@@ -99,6 +99,7 @@ body {
   --_deg: -moz-calc(180deg / var(--_total));
   --_deg: calc(180deg / var(--_total));
   --_offset: 300px;
+  position: relative;
 }
 @media (min-width: 668px) {
   .slider {
@@ -110,10 +111,22 @@ body {
     --_offset: 300px;
   }
 }
-@media (min-width: 1400px) {
+@media (min-width: 1600px) {
   .slider {
     --_offset: 400px;
   }
+}
+.slider::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 10%;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#ffffff), color-stop(rgba(255, 255, 255, 0.9)), color-stop(rgba(255, 255, 255, 0.5)), to(transparent));
+  background-image: -moz-linear-gradient(bottom, #ffffff, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5), transparent);
+  background-image: -o-linear-gradient(bottom, #ffffff, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5), transparent);
+  background-image: linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5), transparent);
 }
 .slider .slick-list, .slider .slick-track {
   -webkit-transform: unset !important;
@@ -123,10 +136,18 @@ body {
           transform: unset !important;
 }
 .slider .slick-list {
-  overflow: unset;
-  height: -moz-calc(var(--_offset) + var(--_offset) / 1.5);
-  height: calc(var(--_offset) + var(--_offset) / 1.5);
+  min-height: -moz-calc(var(--_offset) + var(--_offset) / 8);
+  min-height: calc(var(--_offset) + var(--_offset) / 8);
   background-color: #ffffff;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
+}
+@media (min-width: 576px) {
+  .slider .slick-list {
+    min-height: -moz-calc(var(--_offset) + var(--_offset) / 1.5);
+    min-height: calc(var(--_offset) + var(--_offset) / 1.5);
+  }
 }
 .slider .slick-track {
   display: -webkit-box;
@@ -145,9 +166,6 @@ body {
   -moz-transition: unset !important;
   transition: unset !important;
   height: 100%;
-  cursor: -webkit-grab;
-  cursor: -moz-grab;
-  cursor: grab;
 }
 .slider .slick-track::before, .slider .slick-track::after {
   display: none;
@@ -165,6 +183,11 @@ body {
       -ms-transform: rotate(calc((var(--_deg)) * var(--_index) * var(--_direction))) translateX(calc(cos(var(--_deg)) * (var(--_index)) * (var(--_offset) + var(--_offset) / 10) * var(--_direction))) translateY(calc(sin(var(--_deg)) * (var(--_index)) * 100px));
        -o-transform: rotate(calc((var(--_deg)) * var(--_index) * var(--_direction))) translateX(calc(cos(var(--_deg)) * (var(--_index)) * (var(--_offset) + var(--_offset) / 10) * var(--_direction))) translateY(calc(sin(var(--_deg)) * (var(--_index)) * 100px));
           transform: rotate(calc((var(--_deg)) * var(--_index) * var(--_direction))) translateX(calc(cos(var(--_deg)) * (var(--_index)) * (var(--_offset) + var(--_offset) / 10) * var(--_direction))) translateY(calc(sin(var(--_deg)) * (var(--_index)) * 100px));
+}
+@media (max-width: 575px) {
+  .slider .slick-slide {
+    padding-inline: 1.5rem;
+  }
 }
 .slider .slick-slide:not(.slick-active) {
   opacity: 0;
@@ -188,7 +211,12 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   gap: 0.5rem;
-  margin-top: -8rem;
+  margin-top: -1rem;
+}
+@media (min-width: 576px) {
+  .slider__navigation {
+    margin-top: -8rem;
+  }
 }
 .slider__navigation .slick-arrow {
   display: inline-block;

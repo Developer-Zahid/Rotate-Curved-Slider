@@ -90,6 +90,8 @@ body{
 }
 
 .slider{
+    $color-bg: #ffffff;
+
     --_deg: calc(180deg / var(--_total));
     --_offset: 300px;
     
@@ -99,8 +101,20 @@ body{
     @media (min-width: 992px) {
         --_offset: 300px;
     }
-    @media (min-width: 1400px) {
+    @media (min-width: 1600px) {
         --_offset: 400px;
+    }
+
+    position: relative;
+
+    &::after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 10%;
+        background-image: linear-gradient(to top, $color-bg, rgba($color-bg, $alpha: 0.9), rgba($color-bg, $alpha: 0.5), transparent);
     }
 
     .slick{
@@ -111,9 +125,12 @@ body{
         }
 
         &-list{
-            overflow: unset;
-            height: calc(var(--_offset) + (var(--_offset) / 1.5));
-            background-color: #ffffff;
+            min-height: calc(var(--_offset) + (var(--_offset) / 8));
+            @media (min-width: 576px) {
+                min-height: calc(var(--_offset) + (var(--_offset) / 1.5));
+            }
+            background-color: $color-bg;
+            cursor: grab;
         }
 
         &-track{
@@ -122,7 +139,6 @@ body{
             width: 100% !important;
             transition: unset !important;
             height: 100%;
-            cursor: grab;
 
             &::before,
             &::after
@@ -140,6 +156,10 @@ body{
                 rotate(calc((var(--_deg) ) * var(--_index) * var(--_direction)))
                 translateX((calc(cos(var(--_deg)) * (var(--_index)) * ((var(--_offset) + (var(--_offset) / 10) ) * var(--_direction)))))
                 translateY((calc(sin(var(--_deg)) * (var(--_index)) * (100px))));
+
+            @media (max-width: 575px) {
+                padding-inline: 1.5rem;
+            }
         
             &:not(.slick-active){
                 opacity: 0;
@@ -155,7 +175,10 @@ body{
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
-        margin-top: -8rem;
+        margin-top: -1rem;
+        @media (min-width: 576px) {
+            margin-top: -8rem;
+        }
 
         .slick{
             &-arrow{
