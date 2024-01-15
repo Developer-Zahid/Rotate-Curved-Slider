@@ -27,7 +27,7 @@ body{
 
 .section{
     padding-block: 4rem;
-    overflow-x: clip;
+    overflow: hidden;
     
     &__header{
         padding-inline: 1.6rem;
@@ -103,47 +103,99 @@ body{
         --_offset: 400px;
     }
 
-    .slick-list{
-        overflow: unset;
-        height: calc(var(--_offset) + (var(--_offset) / 1.5));
-        background-color: #ffffff;
-    }
-
-    .slick-list,
-    .slick-track
-    {
-        transform: unset !important;
-    }
-
-    .slick-track{
-        display: flex;
-        justify-content: center;
-        width: 100% !important;
-        transition: unset !important;
-    }
-
-    .slick-track::after,
-    .slick-track::before
-    {
-        display: none;
-    }
-
-    .slick-slide{
-        float: unset;
-        height: auto;
-        position: absolute;
-        transition: all 0.3s linear !important;
-        transform:
-            rotate(calc((var(--_deg) ) * var(--_index) * var(--_direction)))
-            translateX((calc(cos(var(--_deg)) * (var(--_index)) * ((var(--_offset) + (var(--_offset) / 10) ) * var(--_direction)))))
-            translateY((calc(sin(var(--_deg)) * (var(--_index)) * (100px))));
-
-
-        &:not(.slick-active)
+    .slick{
+        &-list,
+        &-track
         {
-            opacity: 0;
-            visibility: hidden;
-            // z-index: -1;
+            transform: unset !important;
+        }
+
+        &-list{
+            overflow: unset;
+            height: calc(var(--_offset) + (var(--_offset) / 1.5));
+            background-color: #ffffff;
+        }
+
+        &-track{
+            display: flex;
+            justify-content: center;
+            width: 100% !important;
+            transition: unset !important;
+            height: 100%;
+            cursor: grab;
+
+            &::before,
+            &::after
+            {
+                display: none;
+            }
+        }
+
+        &-slide{
+            float: unset;
+            height: auto;
+            position: absolute;
+            transition: all 0.3s linear !important;
+            transform:
+                rotate(calc((var(--_deg) ) * var(--_index) * var(--_direction)))
+                translateX((calc(cos(var(--_deg)) * (var(--_index)) * ((var(--_offset) + (var(--_offset) / 10) ) * var(--_direction)))))
+                translateY((calc(sin(var(--_deg)) * (var(--_index)) * (100px))));
+        
+            &:not(.slick-active){
+                opacity: 0;
+                visibility: hidden;
+                // z-index: -1;
+            }
+        }
+    }
+
+    &__navigation{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: -8rem;
+
+        .slick{
+            &-arrow{
+                display: inline-block;
+                line-height: 0;
+                background-color: transparent;
+                border: 0;
+                font-size: 3rem;
+                cursor: pointer;
+
+                &--next{
+                    order: 1;
+                }
+            }
+
+            &-dots{
+                list-style-type: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+    
+                button{
+                    display: block;
+                    font-size: 0;
+                    background-color: #cccccc;
+                    border: 0;
+                    width: 2rem;
+                    height: 0.7rem;
+                    border-radius: 10rem;
+                    cursor: pointer;
+                    transition: background .2s ease-in-out;
+                }
+    
+                .slick-active button{
+                    background-color: #000000;
+                }
+    
+    
+            }
         }
     }
 }

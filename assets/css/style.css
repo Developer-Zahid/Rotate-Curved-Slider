@@ -2,7 +2,9 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 * {
@@ -23,20 +25,22 @@ body {
 
 .section {
   padding-block: 4rem;
-  overflow-x: clip;
+  overflow: hidden;
 }
 .section__header {
   padding-inline: 1.6rem;
   text-align: center;
   max-width: 80rem;
   margin-inline: auto;
-  margin-block-end: 4rem;
+  -webkit-margin-after: 4rem;
+          margin-block-end: 4rem;
 }
 .section__header__title {
   font-size: clamp(3rem, 5vw, 8rem);
   font-weight: 500;
   line-height: 1.1;
-  margin-block-end: 2rem;
+  -webkit-margin-after: 2rem;
+          margin-block-end: 2rem;
 }
 .section__header__text {
   font-size: 1.6rem;
@@ -52,6 +56,8 @@ body {
   border-radius: 1rem;
   padding: 2rem;
   background-color: #f4f4f4;
+  background-image: -moz-linear-gradient(350deg, var(--_color-1, #ffeceb), var(--_color-2, #f5edff));
+  background-image: -o-linear-gradient(350deg, var(--_color-1, #ffeceb), var(--_color-2, #f5edff));
   background-image: linear-gradient(100deg, var(--_color-1, #ffeceb), var(--_color-2, #f5edff));
 }
 .card__title {
@@ -59,11 +65,22 @@ body {
   line-height: 1.8;
 }
 .card__footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
   gap: 1rem;
-  margin-block-start: 3rem;
+  -webkit-margin-before: 3rem;
+          margin-block-start: 3rem;
 }
 .card__footer__avatar {
   border-radius: 50rem;
@@ -79,6 +96,7 @@ body {
 }
 
 .slider {
+  --_deg: -moz-calc(180deg / var(--_total));
   --_deg: calc(180deg / var(--_total));
   --_offset: 300px;
 }
@@ -97,33 +115,129 @@ body {
     --_offset: 400px;
   }
 }
+.slider .slick-list, .slider .slick-track {
+  -webkit-transform: unset !important;
+     -moz-transform: unset !important;
+      -ms-transform: unset !important;
+       -o-transform: unset !important;
+          transform: unset !important;
+}
 .slider .slick-list {
   overflow: unset;
+  height: -moz-calc(var(--_offset) + var(--_offset) / 1.5);
   height: calc(var(--_offset) + var(--_offset) / 1.5);
   background-color: #ffffff;
 }
-.slider .slick-list,
 .slider .slick-track {
-  transform: unset !important;
-}
-.slider .slick-track {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+     -moz-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 100% !important;
+  -webkit-transition: unset !important;
+  -o-transition: unset !important;
+  -moz-transition: unset !important;
   transition: unset !important;
+  height: 100%;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
 }
-.slider .slick-track::after,
-.slider .slick-track::before {
+.slider .slick-track::before, .slider .slick-track::after {
   display: none;
 }
 .slider .slick-slide {
   float: unset;
   height: auto;
   position: absolute;
+  -webkit-transition: all 0.3s linear !important;
+  -o-transition: all 0.3s linear !important;
+  -moz-transition: all 0.3s linear !important;
   transition: all 0.3s linear !important;
-  transform: rotate(calc((var(--_deg)) * var(--_index) * var(--_direction))) translateX(calc(cos(var(--_deg)) * (var(--_index)) * (var(--_offset) + var(--_offset) / 10) * var(--_direction))) translateY(calc(sin(var(--_deg)) * (var(--_index)) * 100px));
+  -webkit-transform: rotate(calc((var(--_deg)) * var(--_index) * var(--_direction))) translateX(calc(cos(var(--_deg)) * (var(--_index)) * (var(--_offset) + var(--_offset) / 10) * var(--_direction))) translateY(calc(sin(var(--_deg)) * (var(--_index)) * 100px));
+     -moz-transform: rotate(-moz-calc((var(--_deg)) * var(--_index) * var(--_direction))) translateX(-moz-calc(cos(var(--_deg)) * (var(--_index)) * (var(--_offset) + var(--_offset) / 10) * var(--_direction))) translateY(-moz-calc(sin(var(--_deg)) * (var(--_index)) * 100px));
+      -ms-transform: rotate(calc((var(--_deg)) * var(--_index) * var(--_direction))) translateX(calc(cos(var(--_deg)) * (var(--_index)) * (var(--_offset) + var(--_offset) / 10) * var(--_direction))) translateY(calc(sin(var(--_deg)) * (var(--_index)) * 100px));
+       -o-transform: rotate(calc((var(--_deg)) * var(--_index) * var(--_direction))) translateX(calc(cos(var(--_deg)) * (var(--_index)) * (var(--_offset) + var(--_offset) / 10) * var(--_direction))) translateY(calc(sin(var(--_deg)) * (var(--_index)) * 100px));
+          transform: rotate(calc((var(--_deg)) * var(--_index) * var(--_direction))) translateX(calc(cos(var(--_deg)) * (var(--_index)) * (var(--_offset) + var(--_offset) / 10) * var(--_direction))) translateY(calc(sin(var(--_deg)) * (var(--_index)) * 100px));
 }
 .slider .slick-slide:not(.slick-active) {
   opacity: 0;
   visibility: hidden;
+}
+.slider__navigation {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+     -moz-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 0.5rem;
+  margin-top: -8rem;
+}
+.slider__navigation .slick-arrow {
+  display: inline-block;
+  line-height: 0;
+  background-color: transparent;
+  border: 0;
+  font-size: 3rem;
+  cursor: pointer;
+}
+.slider__navigation .slick-arrow--next {
+  -webkit-box-ordinal-group: 2;
+  -webkit-order: 1;
+     -moz-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+.slider__navigation .slick-dots {
+  list-style-type: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+     -moz-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 0.5rem;
+}
+.slider__navigation .slick-dots button {
+  display: block;
+  font-size: 0;
+  background-color: #cccccc;
+  border: 0;
+  width: 2rem;
+  height: 0.7rem;
+  border-radius: 10rem;
+  cursor: pointer;
+  -webkit-transition: background 0.2s ease-in-out;
+  -o-transition: background 0.2s ease-in-out;
+  -moz-transition: background 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out;
+}
+.slider__navigation .slick-dots .slick-active button {
+  background-color: #000000;
 }/*# sourceMappingURL=style.css.map */
